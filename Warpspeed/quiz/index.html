@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Document</title>
+</head>
+
+<body>
+    
+<div class="starter">
+    <button onclick="startQuiz(this)">Start</button>
+  </div>
+  <div class="container hide">
+    <header>
+      <p>Quiz</p>
+      <div class="timer"></div>
+    </header>
+    <div class="question-box"></div>
+    <footer>
+      <button id="next-btn">Next</button>
+      <button id="finish-btn" class="hide">Finish</button>
+    </footer>
+  </div>
+  <div class="result-box hide">
+    <div class="num-div">
+      You have got
+      <p id="got-num"></p>
+      out of
+      <p id="total-num"></p>
+    </div>
+    <div class="button-box">
+      <button id="replay" onclick="resultShow()">See Reullt</button>
+      <button id="replay" onclick="replay()">Replay Quiz</button>
+    </div>
+  </div>
+</body>
+<script src="main.js"></script>
+</html>
+
+

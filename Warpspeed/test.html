@@ -1,0 +1,63 @@
+<script>
+$.ajax({
+  type: "GET",
+  url: "https://www.youtube.com/watch?v=i53Gi_K3o7I&ab_channel=NeetCode",
+  crossDomain: true,
+}).done(function(data) {
+  console.log(data);
+  getCaption(data);
+});
+
+
+var parser, xmlDoc;
+var HTML_captions = "";
+
+// Parse the AJAX response and get the captions.
+function getCaption(ajax_response) {
+  try {
+
+    parser = new DOMParser();
+    xmlDoc = parser.parseFromString(ajax_response, "text/xml");
+    //console.log(ajax_response);
+    //console.log(xmlDoc.getElementsByTagName("transcript").length);
+
+    if (xmlDoc.getElementsByTagName("transcript").length > 0) {
+      // Loop the results of the xmlDoc:
+      for (var i = 0; i < xmlDoc.getElementsByTagName("transcript")[0].childNodes.length; i++) {
+        console.log(xmlDoc.getElementsByTagName("transcript")[0].childNodes[i].innerHTML);
+        HTML_captions += xmlDoc.getElementsByTagName("transcript")[0].childNodes[i].innerHTML + "<br/>";
+      }
+    } else {
+      // Loop the results of the ajax_response;
+      for (var i = 0; i < ajax_response.getElementsByTagName("transcript")[0].childNodes.length; i++) {
+        console.log(ajax_response.getElementsByTagName("transcript")[0].childNodes[i].innerHTML);
+        HTML_captions += ajax_response.getElementsByTagName("transcript")[0].childNodes[i].innerHTML + "<br/>";
+      }
+    }
+
+    document.getElementById("demo").innerHTML = "<i>Preparing captions...</i>";
+    setTimeout(fillData(), 2000);
+
+  } catch (err) {
+    console.log(err);
+    document.getElementById("demo").innerHTML = ('Error at getCaption function - see console form more details.');
+    alert('Error at getCaption function - see console form more details.');
+  }
+}
+
+
+// Fill the data "captions" in a HTML "div" control.
+function fillData() {
+  try {
+    document.getElementById("demo").innerHTML = HTML_captions;
+  } catch (err) {
+    console.log(err);
+    document.getElementById("demo").innerHTML = ('Error at fillData function - see console form more details.');
+    alert('Error at fillData function - see console form more details.');
+  }
+
+}
+
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<div id="demo"><i>Loading captions...</i></div>

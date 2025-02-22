@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Quiz Example</title>
+	<style>
+		.quiz-container {
+			max-width: 500px;
+			margin: auto;
+			padding: 20px;
+			border: 1px solid #ddd;
+			border-radius: 10px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+		}
+		.question {
+			font-size: 20px;
+			font-weight: bold;
+			margin-bottom: 10px;
+		}
+		.answers {
+			display: flex;
+			flex-wrap: wrap;
+			margin: -5px;
+		}
+		.answer {
+			flex: 1;
+			margin: 5px;
+			padding: 10px;
+			border: 1px solid #ddd;
+			border-radius: 5px;
+			cursor: pointer;
+			transition: all 0.2s ease-in-out;
+		}
+		.answer:hover {
+			background-color: #f2f2f2;
+		}
+		.correct {
+			background-color: #c3e6cb;
+			border-color: #b1dfbb;
+		}
+		.incorrect {
+			background-color: #f8d7da;
+			border-color: #f5c6cb;
+		}
+	</style>
+</head>
+<body>
+	<div class="quiz-container">
+		<div class="question">What is the capital of France?</div>
+		<div class="answers">
+			<div class="answer" data-answer="0">Paris</div>
+			<div class="answer" data-answer="1">Berlin</div>
+			<div class="answer" data-answer="2">Madrid</div>
+			<div class="answer" data-answer="3">London</div>
+		</div>
+	</div>
+
+	<script>
+		// Get all answer elements
+		var answers = document.querySelectorAll('.answer');
+
+		// Add click event listener to each answer element
+		answers.forEach(function(answer) {
+			answer.addEventListener('click', function() {
+				// Remove all existing correct/incorrect classes
+				answers.forEach(function(answer) {
+					answer.classList.remove('correct', 'incorrect');
+				});
+
+				// Check if the selected answer is correct
+				if (this.dataset.answer === '0') {
+					this.classList.add('correct');
+				} else {
+					this.classList.add('incorrect');
+				}
+			});
+		});
+	</script>
+</body>
+</html>
