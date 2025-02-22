@@ -1,0 +1,57 @@
+<html>
+    <head>
+        <title>SARATHI-Send request</title>
+        <link rel="stylesheet" href="css/srequest.css" />
+    </head>
+    <body>
+        <div class="banner">
+            <ul>
+                <li><img src="logo.png"></li>
+                <li><H1>SARATHI</H1></li>
+                </ul>
+                <div class="passenger_Register">
+                    <br>
+                    <h2> Send Request</h2>
+                    <br>
+                    <br>
+                    <form action="/SetDest" method="post">
+                        <input type="text" name ="your_location" id="src" placeholder="Enter your Location ">
+                    <br>
+                    <h3>--------------------OR--------------------</h3>
+                    <button onclick="getLocation()">Get Current Location</button>
+                    <p id="demo"></p>                    
+                    
+                    <input type="text" name ="dest_location" placeholder="Enter your Destination">
+                    <button  type="submit"><span></span> SEND REQUEST</button>
+                    <br>
+
+                    <button onclick=LogOut()><span></span>LOGOUT</button>
+                    </form>
+                </div>
+            </div>
+            <script>
+                var x = document.getElementById("demo");
+
+                function getLocation() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.watchPosition(showPosition);
+                } else { 
+                    x.innerHTML = "Geolocation is not supported by this browser.";
+                }
+                }
+                    
+                function showPosition(position) {
+                    x.innerHTML="Latitude: " + position.coords.latitude + 
+                    "<br>Longitude: " + position.coords.longitude;
+
+                }
+                function LogOut() {
+                    console.log("dff")
+                    window.location.replace("'http://localhost:3000/logout'");
+
+                }
+
+                
+                </script>
+    </body>
+</html>
